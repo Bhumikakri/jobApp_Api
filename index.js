@@ -17,6 +17,6 @@ app.use(express.json());
 
 app.use("/api/v1/job", jobRoutes);
 
-app.listen(5000, () => {
-  console.log("server is running up on 5000");
+app.listen(10000, () => {
+  console.log("server is running up on 10000");
 });
