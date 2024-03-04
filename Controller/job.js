@@ -42,7 +42,7 @@ const updateJob = async (req, res) => {
     // await jobModel.findByIdAndUpdate(req.body._id, req.body);
     res.json({
       success: true,
-      message: `updated this id: ${req.body._id} successfully `,
+      message: `updated successfully `,
     });
   } catch (error) {
     res.status(400).json({
