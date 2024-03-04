@@ -1,4 +1,4 @@
-# using method All jobApplication Api 
+# Using Method All JobApplication Api 
 ### for save the job
 - POST- https://jobapp-api-3gn6.onrender.com/api/v1/job
 ### for show all the job
