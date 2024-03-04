@@ -1,5 +1,7 @@
 const jobModel = require("../models/job");
 
+
+// save data in db Api logic-----------------
 const createJob = async (req, res) => {
   // console.log(req.body);
   try {
@@ -14,11 +16,12 @@ const createJob = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: "Something went wrong",
+      message: `Something went wrong`,
     });
   }
 };
 
+// show all data Api logic-------------------
 const getJob = async (req, res) => {
   try {
     const allJobs = await jobModel.find();
@@ -31,40 +34,44 @@ const getJob = async (req, res) => {
   }
 };
 
+// updated Api logic------------------------
 const updateJob = async (req, res) => {
-  console.log(req.body);
-  await jobModel.updateOne(
-    { _id: req.body._id },
-    { $set: req.body }
-  );
-  // await jobModel.findByIdAndUpdate(req.body._id, req.body);
-  res.json({
-    success: true,
-    message: "this is updated api",
-  });
-};
-
-const deleteJob = async (req, res) =>{
+  // console.log(req.body);
   try {
-    await jobModel.findByIdAndDelete(req.body._id);
-   
-
+    await jobModel.updateOne({ _id: req.body._id }, { $set: req.body });
+    // await jobModel.findByIdAndUpdate(req.body._id, req.body);
     res.json({
       success: true,
-      message: "This is dlt Api",
+      message: `updated this id: ${req.body._id} successfully `,
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: "Something went wrong",
+      message: "Something went wrong in updation",
     });
   }
-  
-}
+};
+
+// delet Api logic--------------------------
+const deleteJob = async (req, res) => {
+  try {
+    await jobModel.findByIdAndDelete(req.body._id);
+
+    res.json({
+      success: true,
+      message: `deleted this ${req.body._id} id successfully`,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "Something went wrong in delete",
+    });
+  }
+};
 
 module.exports = {
   createJob,
   getJob,
   updateJob,
-  deleteJob
+  deleteJob,
 };
